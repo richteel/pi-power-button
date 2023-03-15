@@ -1,0 +1,24 @@
+# vim /etc/systemd/system/pi-button-boot.service
+[Unit]
+Description=Listen for power button and turn off power
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/python3 /usr/local/bin/pi-button-boot.py &
+ExecStop=/usr/bin/python3 /usr/local/bin/pi-button-boot.py
+RemainAfterExit=true
+Restart=always
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+
+# Run the following three commands to enable and run the service
+# ##############################################################
+# sudo systemctl daemon-reload
+# sudo systemctl enable pi-button-boot.service
+# sudo systemctl start pi-button-boot.service
+
+# Check Service with the following line
+# ##############################################################
+# systemctl status pi-button-boot.service

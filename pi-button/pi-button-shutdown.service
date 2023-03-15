@@ -1,0 +1,31 @@
+# vim /etc/systemd/system/pi-button-shutdown.service
+# REF: https://www.golinuxcloud.com/run-script-with-systemd-before-shutdown-linux/
+# REF: https://raspberrypi.stackexchange.com/questions/57183/osmc-how-to-execute-a-script-with-systemd-at-shutdown
+# REF: https://www.golinuxcloud.com/run-script-with-systemd-at-shutdown-only-rhel/
+
+[Unit]
+Description=Turn off power after shutdown
+DefaultDependencies=no
+Conflicts=reboot.target
+Before=poweroff.target halt.target shutdown.target
+Requires=poweroff.target
+
+[Service]
+Type=oneshot
+# ExecStart=/usr/bin/python3 /usr/local/bin/pi-button-shutdown.py
+ExecStart=/usr/local/bin/pi-button-shutdown.sh
+ExecStop=/usr/local/bin/pi-button-shutdown.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=shutdown.target
+
+# Run the following three commands to enable and run the service
+# ##############################################################
+# sudo systemctl daemon-reload
+# sudo systemctl enable pi-button-shutdown.service
+# sudo systemctl start pi-button-shutdown.service
+
+# Check Service with the following line
+# ##############################################################
+# systemctl status pi-button-shutdown.service

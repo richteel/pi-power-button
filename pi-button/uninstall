@@ -1,0 +1,22 @@
+#! /bin/sh
+
+echo "=> Stopping power button boot Service listener...\n"
+sudo systemctl stop pi-button-boot.service
+sudo systemctl disable pi-button-boot.service
+
+echo "=> Removing pi-button-boot...\n"
+sudo rm -rf /usr/local/bin/pi-button-boot.py
+sudo rm -rf /etc/systemd/system/pi-button-boot.service 
+
+echo "pi-button-boot Service uninstalled.\n"
+
+echo "=> Stopping power button boot Service listener...\n"
+sudo systemctl stop pi-button-shutdown.service
+sudo systemctl disable pi-button-shutdown.service
+
+echo "=> Removing pi-button-shutdown...\n"
+# sudo rm -rf /usr/local/bin/pi-button-shutdown.py
+sudo rm -rf /usr/local/bin/pi-button-shutdown.sh
+sudo rm -rf /etc/systemd/system/pi-button-shutdown.service 
+
+echo "pi-button-shutdown Service uninstalled.\n"

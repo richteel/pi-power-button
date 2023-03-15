@@ -1,0 +1,28 @@
+#! /bin/sh
+
+echo "=> Installing power button boot Service listener...\n"
+sudo cp pi-button-boot.py /usr/local/bin/
+sudo chmod +x /usr/local/bin/pi-button-boot.py
+
+sudo cp pi-button-boot.service /etc/systemd/system
+sudo chmod 0644 /etc/systemd/system/pi-button-boot.service
+
+echo "=> Installing pi-button-boot Service...\n"
+sudo systemctl daemon-reload
+sudo systemctl enable pi-button-boot.service
+sudo systemctl start pi-button-boot.service &
+
+
+echo "=> Installing power button shutdown Service listener...\n"
+# sudo cp pi-button-shutdown.py /usr/local/bin/
+# sudo chmod +x /usr/local/bin/pi-button-shutdown.py
+sudo cp pi-button-shutdown.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/pi-button-shutdown.sh
+
+sudo cp pi-button-shutdown.service /etc/systemd/system
+sudo chmod 0644 /etc/systemd/system/pi-button-shutdown.service
+
+echo "=> Installing pi-button-shutdown Service...\n"
+sudo systemctl daemon-reload
+sudo systemctl enable pi-button-shutdown.service
+# sudo systemctl start pi-button-shutdown.service
