@@ -24,6 +24,7 @@ The hardware for this switch is different than a simple switch used in Howchoo's
 - Button press to turn on
 - Button press to signal to the device to shutdown
 - Long button press to force power off
+- Turn off power when the Raspberry Pi shuts down
 
 A PCB to build the Mosaic Industries switch is available on OSH Park at [https://oshpark.com/shared_projects/Igqfdasg](https://oshpark.com/shared_projects/Igqfdasg)
 
