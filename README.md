@@ -8,7 +8,7 @@ The version of these scripts use systemd instead of System V init.
 
 1. [Connect to your Raspberry Pi via SSH](https://howchoo.com/g/mgi3mdnlnjq/how-to-log-in-to-a-raspberry-pi-via-ssh)
 1. Clone this repo: `git clone https://github.com/richteel/pi-power-button.git`
-1. Optional: Edit line 10 in pi-button-boot.py and line 11 in pi-button-shutdown.sh to your preferred pin
+1. Optional: Edit line 10 in pi-button-boot.py and line 11 in pi-button-shutdown.sh to your preferred pin *(The script utilizes GPIO 22.)*
 1. Run the setup script: `./pi-power-button/pi-button/install`
 
 ## Uninstallation
@@ -28,15 +28,20 @@ The hardware for this switch is different than a simple switch used in Howchoo's
 
 A PCB to build the Mosaic Industries switch is available on OSH Park at [https://oshpark.com/shared_projects/Igqfdasg](https://oshpark.com/shared_projects/Igqfdasg)
 
-Below is a diagram of the connections. Note the Adafruit 1000C is modified by removing R13 and connecting a 200K ohm resistor between enable (EN) and Ground. This modification is necessary to allow the switch to turn off the Powerboost 1000C.
+Below is a diagram of the connections. Note the Adafruit 1000C is modified by removing R13 and connecting a 200K ohm resistor and capacitor between enable (EN) and Ground. This modification is necessary to allow the switch to turn off the Powerboost 1000C.
 
-![Hookup diagram of Raspbery Pi Power Circuit](./diagrams/PowerCircuit.png)
+![Hookup diagram of Raspbery Pi Power Circuit](./images/PowerCircuit.png)
 
-## Next Steps ##
+## More information may be found at:
+
+- [https://teelsys.com/soft-latching-power-switch-revisited/](https://teelsys.com/soft-latching-power-switch-revisited/)
+- [https://www.flux.ai/richteel/soft-latching-power-switch](https://www.flux.ai/richteel/soft-latching-power-switch)
+
+## Next Steps
 
 - Clean up the code now that it is working as expected
 - Possibly have one script file to handle shutdown and listening for button press
-- Determine how to make the Powerboost 1000C start from a powered off state
+- ~~Determine how to make the Powerboost 1000C start from a powered off state~~ Added capacitor in parallel with the resistor across PowerBoost 1000C enable and ground. 
 
 
 [Raspberry Pi pinout at pinout.xyz](https://pinout.xyz/)
